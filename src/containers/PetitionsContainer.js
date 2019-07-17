@@ -26,8 +26,8 @@ export default class PetitionsContainer extends Component {
   getPetitions() {
     axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
      .then(res => {
-       this.setState({petitions: res.data.items});
-    })
+       this.setState({petitions: res.data.items})})
+       .catch(err => console.log('There was an error' + err));
   }
 
   componentDidMount() {
