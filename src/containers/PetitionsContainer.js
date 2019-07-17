@@ -60,6 +60,7 @@ export default class PetitionsContainer extends Component {
         <h1>These are trending petitions</h1>
         {petitions.length > 0 ? petitionsList : "loading"}
         <a href="#" onClick={this.onLoadPetitions}>Load more petitions...</a>
+        {this.renderPetitions()}
       </div>
     );
   }
