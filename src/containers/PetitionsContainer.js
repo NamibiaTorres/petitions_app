@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class PetitionsContainer extends Component {
   getPetitionsList() {
-    return (dispatch, getState) => {
-      return fetch("http://localhost:3001/petitions").then(
-        function(response) {
-          if (response.status >= 400) {
-            throw new Error("Bad response from server");
-          }
-          dispatch({payload: response.json()}).catch(function(error)
-            {
-              dispatch({payload:error});
-            }
-          )
-        });
-      );
-    };
   }
-  // render() {
-  //   return (
-  //     <div>
-  //       Petitions container
-  //     </div>
-  //   );
-  // }
+
+  state = {
+
+    petitions: [],
+    page: 1,
+    pageSize: 10,
+    sortBy: 'created_at'
+
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
+      .then(res => {
+        this.setState({petitions: res.data});
+      })
+  }
+
+  render() {
+    return (
+      <ul>
+        {this.state.petitions.map(petition => <li key={petition.id}>{petition.id}</li>)}
+      </ul>
+    );
+  }
 }

@@ -4,17 +4,18 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import PetitionContainer from './containers/PetitionContainer';
 import PetitionsContainer from './containers/PetitionsContainer';
 
-function App() {
+class App extends React.Component {
+  render(){
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Route path="/" component={PetitionsContainer} exact />
-        <Route path="/:petitionId" component={PetitionContainer}/>
-      </div>
-    </BrowserRouter>
-  );
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" component={PetitionsContainer} exact />
+          <Route path="/:petitionId" component={PetitionContainer}/>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
-console.log('App is running');
 
 const appRoot = document.getElementById('root');
 
