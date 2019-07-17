@@ -19,6 +19,9 @@ export default class PetitionsContainer extends Component {
       sortBy: 'created_at'
     };
 
+    this.axios = (axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
+                .then(res => {this.setState({petitions: res.data.items});}));
+
     this.onLoadPetitions = this.onLoadPetitions.bind(this);
     this.renderPetitions = this.renderPetitions.bind(this);
   }
@@ -31,17 +34,16 @@ export default class PetitionsContainer extends Component {
     })
   }
 
-  axios = require('axios');
-  renderPetitions() {
-    return {
-      axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
-    };
-  }
+  // axios = require('axios');
+  // renderPetitions() {
+  //   return {axios};
+  // }
 
   componentDidMount() {
-      this.renderPetitions().then(res => {
-        this.setState({petitions: res.data.items});
-      })
+    this.axios;
+      // this.renderPetitions().then(res => {
+      //   this.setState({petitions: res.data.items});
+      // })
   }
 
   render() {
