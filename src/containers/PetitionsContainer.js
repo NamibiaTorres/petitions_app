@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class PetitionsContainer extends Component {
-
-  // state = {
-  //   petitions: [],
-  //   page: 1,
-  //   pageSize: 10,
-  //   sortBy: 'created_at'
-  // }
   constructor(props) {
     super(props);
 
@@ -19,35 +12,30 @@ export default class PetitionsContainer extends Component {
       sortBy: 'created_at'
     };
 
-    this.axios = (axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
-                .then(res => {this.setState({petitions: res.data.items});}));
-
     this.onLoadPetitions = this.onLoadPetitions.bind(this);
-    this.renderPetitions = this.renderPetitions.bind(this);
+    this.getPetitions = this.getPetitions.bind(this);
   }
 
 
   onLoadPetitions(e) {
     e.preventDefault();
-    this.setState(prevState => {
-      return {pageSize: this.state.pageSize.count + 5 }
+    const currentPageSize = this.state.pageSize
+    this.setState({pageSize: currentPageSize + 5 }, () => this.getPetitions())
+  }
+
+  getPetitions() {
+    axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
+     .then(res => {
+       this.setState({petitions: res.data.items});
     })
   }
 
-  // axios = require('axios');
-  // renderPetitions() {
-  //   return {axios};
-  // }
-
   componentDidMount() {
-    this.axios;
-      // this.renderPetitions().then(res => {
-      //   this.setState({petitions: res.data.items});
-      // })
+    this.getPetitions();
   }
 
   render() {
-    const {petitions, pageSize} = this.state
+    const {petitions} = this.state
     let petitionsList = (
     <ul>
       {petitions && petitions.map((petition) => {
@@ -62,7 +50,6 @@ export default class PetitionsContainer extends Component {
         <h1>These are trending petitions</h1>
         {petitions.length > 0 ? petitionsList : "loading"}
         <a href="#" onClick={this.onLoadPetitions}>Load more petitions...</a>
-        {this.renderPetitions()}
       </div>
     );
   }
