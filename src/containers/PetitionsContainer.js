@@ -72,7 +72,7 @@ export default class PetitionsContainer extends Component {
     </ul>
     )
 
-
+    // This will be handled by the Views in second iteration
     return (
       <div>
         <h1>These are trending petitions</h1>

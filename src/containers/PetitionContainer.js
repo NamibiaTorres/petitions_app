@@ -21,6 +21,7 @@ export default class PetitionContainer extends Component {
   // Remder the title and description of a single petition
   // Create a "Return to list" button that returns the user to the list of petitions
   render() {
+    // This will be handled by the Views in second iteration
     return (
       <div>
         <h1>Petition Title:{this.state.title}</h1>
