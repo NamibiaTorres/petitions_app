@@ -9,7 +9,7 @@ export default class PetitionsContainer extends Component {
 
     petitions: [],
     page: 1,
-    pageSize: 10,
+    pageSize: 15,
     sortBy: 'created_at'
 
   }
@@ -22,10 +22,20 @@ export default class PetitionsContainer extends Component {
   }
 
   render() {
+    const {petitions} = this.state
+    let petitionsList = (
+    <ul>
+      {petitions && petitions.map((petition) => {
+        return <li>{petition.id}</li>
+      })}
+    </ul>
+    )
+
     return (
-      <ul>
-        {this.state.petitions.map(petition => <li key={petition.id}>{petition.id}</li>)}
-      </ul>
+      <div>
+        <h1>These are the trending petitions</h1>
+
+      </div>
     );
   }
 }
