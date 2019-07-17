@@ -14,11 +14,11 @@ export default class PetitionContainer extends Component {
   }
 
   getPetition() {
-    // gets one the petition we clicked on, and passes back the title and description for that petition
+    // gets the petition we clicked on, and passes back the title and description for that petition
   }
   // STEPS:
   // Once user is rerouted to the new page, they should see the title of the petition and its description
-  // Remder the title and description of a single petition
+  // Render the title and description of a single petition
   // Create a "Return to list" button that returns the user to the list of petitions
   render() {
     // This will be handled by the Views in second iteration
