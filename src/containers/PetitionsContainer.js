@@ -67,7 +67,7 @@ export default class PetitionsContainer extends Component {
     let petitionsList = (
     <ul>
       {petitions && petitions.map((petition) => {
-        return <li key={petition.display_title}>{petition.display_title}</li>
+        return <li key={petition.display_title}><a href="petition" onClick={petition.display_title}>{petition.display_title}</a></li>
       })}
     </ul>
     )

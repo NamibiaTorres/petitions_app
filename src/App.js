@@ -19,9 +19,6 @@ class App extends React.Component {
 
 const appRoot = document.getElementById('root');
 
-// let petitions = require();
-// console.log(petitions[0][0])
-
 const petitionsList = (id) => {
 
 }
