@@ -20,19 +20,26 @@ export default class PetitionsContainer extends Component {
     };
 
     this.onLoadPetitions = this.onLoadPetitions.bind(this);
+    this.renderPetitions = this.renderPetitions.bind(this);
   }
 
 
   onLoadPetitions(e) {
-      e.preventDefault();
-      this.setState(prevState => {
-        return {pageSize: this.state.pageSize.count + 5 }
-      })
+    e.preventDefault();
+    this.setState(prevState => {
+      return {pageSize: this.state.pageSize.count + 5 }
+    })
+  }
+
+  axios = require('axios');
+  renderPetitions() {
+    return {
+      axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
+    };
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
-      .then(res => {
+      this.renderPetitions().then(res => {
         this.setState({petitions: res.data.items});
       })
   }
