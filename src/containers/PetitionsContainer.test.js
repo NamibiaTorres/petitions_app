@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PetitionsContainer from './containers/PetitionsContainer';
-import Enzyme from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import sinon from 'sinon';
 
 Enzyme.configure({ adapter: new Adapter() });
 
