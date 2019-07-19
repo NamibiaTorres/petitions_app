@@ -32,8 +32,9 @@ class PetitionContainer extends Component {
   // Create a "Return to list" button that returns the user to the list of petitions
   render() {
     // This will be handled by the Views in second iteration
+    const queryParams = componentProps.parse(this.props.location.search)
     const { petitionId } = this.props.match.params;
-    const currentPetition = this.props.petitions.filter(({ id }) =>
+    const currentPetition = this.props.petitions.filter(({ petitionId }) =>
         id === petitionId);
 
     return (

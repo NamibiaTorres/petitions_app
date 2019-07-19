@@ -52,12 +52,14 @@ class PetitionsContainer extends Component {
        sortBy: this.sortBy,
      };
 
+    // const queryParams = querystring.stringify({ test: 'test' });
+
     const {petitions} = this.props
     let petitionsList = (
       <ul>
         {petitions && petitions.map((petition) => {
           return (<li key={petition.display_title}>
-            <a href="petition" onClick={() => this.props.history.push(`/${petition.id}`)}>
+            <a href="petition" onClick={() => this.props.history.push(`/${petition.id}?${componentProps}`)}>
             {petition.display_title}
             </a>
           </li>)
