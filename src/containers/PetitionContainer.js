@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PetitionsContainer from './PetitionsContainer'
+import { withRouter } from 'react-router-dom';
 
 export default class PetitionContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      petition: '',
       title:'',
       description: ''
     };
-    this.getPetitionsList = this.getPetitionsList.bind(this)
-    this.getPetition = this.getPetition.bind(this);
+    // this.getPetitionsList = this.getPetitionsList.bind(this)
+    // this.getPetition = this.getPetition.bind(this);
   }
 
   // getPetitionsList() {
@@ -25,29 +25,20 @@ export default class PetitionContainer extends Component {
   //   })
   // }
 
-  componentDidMount(){
-    getPetition( petition => {
-      this.setState({petition: petition})
-    })
-  }
-
   // STEPS:
   // Once user is rerouted to the new page, they should see the title of the petition and its description
   // Render the title and description of a single petition
   // Create a "Return to list" button that returns the user to the list of petitions
   render() {
     // This will be handled by the Views in second iteration
+    const { petitionId } = this.props.match.params;
+    const currentPetition = this.props.petitions.filter(({ id }) =>
+        id === petitionId);
+
     return (
       <div>
-        <PetitionsContainer petition={(petition) => {
-          const items = this.getPetitions
-          items.maps(item => {
-            return item
-          }
-          )
-        }}/>
-        <h1>Petition Title:{this.petition.title}</h1>
-        <h3>Description: <p>{this.petition.description}</p></h3>
+        <h1>Petition Title:{currentPetition.title}</h1>
+        <h3>Description: <p>{currentPetition.description}</p></h3>
       </div>
     )
   }
