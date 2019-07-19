@@ -14,8 +14,6 @@ export default class PetitionsContainer extends Component {
 
     this.onLoadPetitions = this.onLoadPetitions.bind(this);
     this.getPetitions = this.getPetitions.bind(this);
-    // this.bySignatureCount = this.bySignatureCount.bind(this);
-    // this.byCreated = this.byCreated.bind(this);
     this.sortBy = this.sortBy.bind(this);
   }
 
@@ -35,7 +33,10 @@ export default class PetitionsContainer extends Component {
   }
 
   componentDidMount() {
-    this.getPetitions();
+    if(!this._isMounted){
+      this.getPetitions();
+    }
+    this._isMounted = true;
   }
 
   // sortBySignatures() {
@@ -65,14 +66,8 @@ export default class PetitionsContainer extends Component {
   // }
 
   sortBy(sortType) {
-    this.setState(
-      {sortBy: sortType,pageSize: 10},
-      () => this.getPetitions()
-    )
-      // this.state.petitions.sort(petitionA, petitionB) {
-      //   petitionA.sortType > petitionB.sortType
-      // }
-    };
+    this.setState({sortBy: sortType, pageSize: 10})
+  };
 
   render() {
     const {petitions} = this.state
@@ -83,6 +78,9 @@ export default class PetitionsContainer extends Component {
       })}
     </ul>
     )
+
+    console.log(this.componentDidMount(true))
+
 
     // This will be handled by the Views in second iteration
     return (

@@ -9,6 +9,9 @@ Enzyme.configure({ adapter: new Adapter() });
 // Tests with Enzyme testing library
 
 /// UNIT TESTS:
+test('PetitionsContainer.getPetitions', () => {
+  expect(getPetitions()).toHaveBeenCalledTimes(1)
+})
 // when there are 10 petitions in state, user sees 3 items in the list of petitions
 // when there a no petitions in state user sees 'loading'
 // When user sorts by created_at the list is sorted by most recent petition creation date/time
