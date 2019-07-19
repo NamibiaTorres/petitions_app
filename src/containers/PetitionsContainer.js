@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-export default class PetitionsContainer extends Component {
+class PetitionsContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      petitions: [],
+      petitions: [{ id: 1, display_title: 'display_title', description: 'description' }],
       page: 1,
       pageSize: 10,
       sortBy: ['created_at', 'displayed_signature_count'],
@@ -44,13 +45,24 @@ export default class PetitionsContainer extends Component {
   };
 
   render() {
-    const {petitions} = this.state
+    const componentProps = {
+       getPetitions: this.getPetitions,
+       petitions: this.state.petitions,
+       onLoadPetitions: this.onLoadPetitions,
+       sortBy: this.sortBy,
+     };
+
+    const {petitions} = this.props
     let petitionsList = (
-    <ul>
-      {petitions && petitions.map((petition) => {
-        return <li key={petition.display_title}><a href="petition" onClick={() => petition.display_title}>{petition.display_title}</a></li>
-      })}
-    </ul>
+      <ul>
+        {petitions && petitions.map((petition) => {
+          return (<li key={petition.display_title}>
+            <a href="petition" onClick={() => this.props.history.push(`/${petition.id}`)}>
+            {petition.display_title}
+            </a>
+          </li>)
+        })}
+      </ul>
     )
 
     // This will be handled by the Views in second iteration
@@ -60,12 +72,14 @@ export default class PetitionsContainer extends Component {
         <h2>
           Sort petitions by:
 
-          <button onClick={() => this.sortBy('displayed_signature_count')}> Signature count</button>
-          <button onClick={() => this.sortBy('created_at')}> When created</button>
+          <button onClick={() => this.props.sortBy('displayed_signature_count')}> Signature count</button>
+          <button onClick={() => this.props.sortBy('created_at')}> When created</button>
         </h2>
         {petitions.length > 0 ? petitionsList : "loading"}
-        <a href="#" onClick={this.onLoadPetitions}>Load more petitions...</a>
+        <a href="#" onClick={this.props.onLoadPetitions}>Load more petitions...</a>
       </div>
     );
   }
 }
+
+export default withRouter(PetitionsContainer);

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import PetitionsContainer from './PetitionsContainer'
+// import PetitionsContainer from './PetitionsContainer'
 import { withRouter } from 'react-router-dom';
 
-export default class PetitionContainer extends Component {
+class PetitionContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      petitions: [{ id: 1, display_title: 'display_title', description: 'description' }],
       title:'',
       description: ''
     };
@@ -43,3 +44,5 @@ export default class PetitionContainer extends Component {
     )
   }
 }
+
+export default withRouter(PetitionContainer);

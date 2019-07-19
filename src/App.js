@@ -9,8 +9,15 @@ class App extends React.Component {
   return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/" component={PetitionsContainer} exact />
-          <Route path="/:petitionId" component={PetitionContainer}/>
+          <Route path="/"
+            render= {() => <PetitionsContainer />}
+            exact
+          />
+
+          <Route path="/:petitionId"
+            render={() => <PetitionContainer />}
+          />
+
           <Link to="/">Petitions List</Link>{' '}
         </div>
       </BrowserRouter>
