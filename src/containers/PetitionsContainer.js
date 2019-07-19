@@ -41,6 +41,9 @@ export default class PetitionsContainer extends Component {
 
   sortBy(sortType) {
     this.setState({sortBy: sortType, pageSize: 10})
+    this.state.petitions.sort((petitionA, petitionB) =>
+      petitionA.sortType > petitionB.sortType
+    )
   };
 
   render() {
@@ -48,13 +51,10 @@ export default class PetitionsContainer extends Component {
     let petitionsList = (
     <ul>
       {petitions && petitions.map((petition) => {
-        return <li key={petition.display_title}><a href="petition" onClick={petition.display_title}>{petition.display_title}</a></li>
+        return <li key={petition.display_title}><a href="petition" onClick={() => petition.display_title}>{petition.display_title}</a></li>
       })}
     </ul>
     )
-
-    console.log(this.componentDidMount(true))
-
 
     // This will be handled by the Views in second iteration
     return (
