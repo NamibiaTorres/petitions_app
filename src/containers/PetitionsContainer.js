@@ -39,32 +39,6 @@ export default class PetitionsContainer extends Component {
     this._isMounted = true;
   }
 
-  // sortBySignatures() {
-  //   const currentPetitions = this.state.petitions;
-  //   const newPetitions = currentPetitions.sort(this.bySignatureCount);
-  //   this.setState({petitions: newPetitions})
-  // }
-
-  // bySignatureCount() {
-  //   axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
-  //    .then(res => {
-  //      this.setState({sortBy: res.data.items.displayed_signature_count})})
-  //      .catch(err => console.log('There was an error' + err));
-  // }
-
-  // sortByCreatedAt() {
-  //   const currentPetitions = this.state.petitions;
-  //   const newPetitions = currentPetitions.sort(this.byCreated);
-  //   this.setState({petitions: newPetitions})
-  // }
-
-  // byCreated() {
-  //   axios.get(`http://localhost:3001/petitions?size=${this.state.pageSize}&sortBy=${this.state.sortBy}`)
-  //    .then(res => {
-  //      this.setState({sortBy: res.data.items.created_at})})
-  //      .catch(err => console.log('There was an error' + err));
-  // }
-
   sortBy(sortType) {
     this.setState({sortBy: sortType, pageSize: 10})
   };
@@ -89,8 +63,8 @@ export default class PetitionsContainer extends Component {
         <h2>
           Sort petitions by:
 
-          <button onClick={this.sortBy('displayed_signature_count')}> Signature count</button>
-          <button onClick={this.sortBy('created_at')}> When created</button>
+          <button onClick={() => this.sortBy('displayed_signature_count')}> Signature count</button>
+          <button onClick={() => this.sortBy('created_at')}> When created</button>
         </h2>
         {petitions.length > 0 ? petitionsList : "loading"}
         <a href="#" onClick={this.onLoadPetitions}>Load more petitions...</a>
