@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PetitionsContainer from './PetitionsContainer'
 
 export default class PetitionContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      petition: [],
+      petition: '',
       page: 1,
       title:'',
       description: ''
@@ -13,9 +14,15 @@ export default class PetitionContainer extends Component {
     this.getPetition = this.getPetition.bind(this);
   }
 
+
   getPetition() {
-    // gets the petition we clicked on, and passes back the title and description for that petition
+    console.log(PetitionsContainer.getPetitions());
+    // list = this.PetitionsContainer.getPetitions()
+    // list.map((item) => {
+    //   return item;
+    // })
   }
+
   // STEPS:
   // Once user is rerouted to the new page, they should see the title of the petition and its description
   // Render the title and description of a single petition
@@ -24,8 +31,8 @@ export default class PetitionContainer extends Component {
     // This will be handled by the Views in second iteration
     return (
       <div>
-        <h1>Petition Title:{this.state.title}</h1>
-        <h3>Description: <p>{this.state.description}</p></h3>
+        <h1>Petition Title:{this.getPetition.title}</h1>
+        <h3>Description: <p>{this.getPetition.description}</p></h3>
       </div>
     )
   }

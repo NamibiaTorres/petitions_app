@@ -40,10 +40,7 @@ export default class PetitionsContainer extends Component {
   }
 
   sortBy(sortType) {
-    this.setState({sortBy: sortType, pageSize: 10})
-    this.state.petitions.sort((petitionA, petitionB) =>
-      petitionA.sortType > petitionB.sortType
-    )
+    this.setState({sortBy: sortType, pageSize: 10}, () => this.getPetitions())
   };
 
   render() {

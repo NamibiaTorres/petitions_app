@@ -11,6 +11,7 @@ class App extends React.Component {
         <div className="App">
           <Route path="/" component={PetitionsContainer} exact />
           <Route path="/:petitionId" component={PetitionContainer}/>
+          <Link to="/">Petitions List</Link>{' '}
         </div>
       </BrowserRouter>
     );
