@@ -7,20 +7,28 @@ export default class PetitionContainer extends Component {
 
     this.state = {
       petition: '',
-      page: 1,
       title:'',
       description: ''
     };
+    this.getPetitionsList = this.getPetitionsList.bind(this)
     this.getPetition = this.getPetition.bind(this);
   }
 
+  // getPetitionsList() {
+  //   <PetitionsContainer petitions={() => this.props.render(this.getPetitions)}/>
+  // }
 
-  getPetition() {
-    console.log(PetitionsContainer.getPetitions());
-    // list = this.PetitionsContainer.getPetitions()
-    // list.map((item) => {
-    //   return item;
-    // })
+  // getPetition() {
+  //   const list = this.getPetitionsList()
+  //   list.map((item) => {
+  //     return item;
+  //   })
+  // }
+
+  componentDidMount(){
+    getPetition( petition => {
+      this.setState({petition: petition})
+    })
   }
 
   // STEPS:
@@ -31,8 +39,15 @@ export default class PetitionContainer extends Component {
     // This will be handled by the Views in second iteration
     return (
       <div>
-        <h1>Petition Title:{this.getPetition.title}</h1>
-        <h3>Description: <p>{this.getPetition.description}</p></h3>
+        <PetitionsContainer petition={(petition) => {
+          const items = this.getPetitions
+          items.maps(item => {
+            return item
+          }
+          )
+        }}/>
+        <h1>Petition Title:{this.petition.title}</h1>
+        <h3>Description: <p>{this.petition.description}</p></h3>
       </div>
     )
   }
