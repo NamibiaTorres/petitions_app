@@ -1,46 +1,45 @@
 import React, { Component } from 'react';
-// import PetitionsContainer from './PetitionsContainer'
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { parse } from 'node-html-parser';
+import Title from '../components/Title'
 
 class PetitionContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      petitions: [{ id: 1, display_title: 'display_title', description: 'description' }],
-      title:'',
-      description: ''
+      petition: {},
     };
     // this.getPetitionsList = this.getPetitionsList.bind(this)
     // this.getPetition = this.getPetition.bind(this);
   }
 
-  // getPetitionsList() {
-  //   <PetitionsContainer petitions={() => this.props.render(this.getPetitions)}/>
-  // }
+  getPetition(id) {
+    axios.get(`http://localhost:3001/petitions/${id}`)
+     .then(res => {
+       this.setState({petition: res.data})
+      })
+      .catch(err => console.log('There was an error' + err));
+  }
 
-  // getPetition() {
-  //   const list = this.getPetitionsList()
-  //   list.map((item) => {
-  //     return item;
-  //   })
-  // }
+  componentDidMount() {
+      const petitionId = this.props.match.params.petitionId
+      this.getPetition(petitionId);
+      console.log(petitionId)
+  }
 
-  // STEPS:
-  // Once user is rerouted to the new page, they should see the title of the petition and its description
-  // Render the title and description of a single petition
-  // Create a "Return to list" button that returns the user to the list of petitions
   render() {
     // This will be handled by the Views in second iteration
-    const queryParams = componentProps.parse(this.props.location.search)
-    const { petitionId } = this.props.match.params;
-    const currentPetition = this.props.petitions.filter(({ petitionId }) =>
-        id === petitionId);
+
+    const { display_title, description } = this.state.petition;
+    let domparser = new DOMParser();
+    const parseDescription = parse(description)
 
     return (
       <div>
-        <h1>Petition Title:{currentPetition.title}</h1>
-        <h3>Description: <p>{currentPetition.description}</p></h3>
+        <Title text = {display_title}/>
+        <h3>Description: {description}</h3>
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import Title from '../components/Title';
 
 class PetitionsContainer extends Component {
   constructor(props) {
@@ -54,12 +55,12 @@ class PetitionsContainer extends Component {
 
     // const queryParams = querystring.stringify({ test: 'test' });
 
-    const {petitions} = this.props
+    const {petitions} = this.state
     let petitionsList = (
       <ul>
         {petitions && petitions.map((petition) => {
           return (<li key={petition.display_title}>
-            <a href="petition" onClick={() => this.props.history.push(`/${petition.id}?${componentProps}`)}>
+            <a href={`petition/${petition.id}`}>
             {petition.display_title}
             </a>
           </li>)
@@ -70,15 +71,15 @@ class PetitionsContainer extends Component {
     // This will be handled by the Views in second iteration
     return (
       <div>
-        <h1>These are trending petitions</h1>
+        <Title text= "These are trending petitions"/>
         <h2>
           Sort petitions by:
 
-          <button onClick={() => this.props.sortBy('displayed_signature_count')}> Signature count</button>
-          <button onClick={() => this.props.sortBy('created_at')}> When created</button>
+          <button onClick={() => this.sortBy('displayed_signature_count')}> Signature count</button>
+          <button onClick={() => this.sortBy('created_at')}> When created</button>
         </h2>
         {petitions.length > 0 ? petitionsList : "loading"}
-        <a href="#" onClick={this.props.onLoadPetitions}>Load more petitions...</a>
+        <a href="#" onClick={this.onLoadPetitions}>Load more petitions...</a>
       </div>
     );
   }

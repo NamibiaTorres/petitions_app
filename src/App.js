@@ -14,7 +14,7 @@ class App extends React.Component {
             exact
           />
 
-          <Route path="/:petitionId"
+          <Route path="/petition/:petitionId"
             render={() => <PetitionContainer />}
           />
 

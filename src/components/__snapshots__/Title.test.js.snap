@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title should render a correct text from props 1`] = `
+<h1
+  className="title"
+>
+  Something
+</h1>
+`;
