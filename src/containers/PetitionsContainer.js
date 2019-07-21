@@ -68,7 +68,7 @@ class PetitionsContainer extends Component {
       </ul>
     )
 
-    // This will be handled by the Views in second iteration
+    // Component View file will handle buttons and other html tags
     return (
       <div>
         <Title text= "These are trending petitions"/>

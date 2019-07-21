@@ -29,13 +29,20 @@ class PetitionContainer extends Component {
       console.log(petitionId)
   }
 
+  stripBoundaryQuotes(str){
+	var strLen = str.length;
+	if (str.charAt(0)=='"') str = str.substring(1,strLen--);
+	if (str.charAt(--strLen)=='"') str =str.substring(0,strLen);
+	return str;
+  }
   render() {
-    // This will be handled by the Views in second iteration
-
     const { display_title, description } = this.state.petition;
-    let domparser = new DOMParser();
-    const parseDescription = parse(description)
-
+    // let domparser = new DOMParser();
+    // const parseDescription = parse(description)
+    // const cleanDescription = stripBoundaryQuotes(description)
+    // NOTE: Attempting to remove boundary quotes around description string
+    //        In order to read html tags and properly render description.
+    // NOTE 2: This Component view file will handle description in next iteration
     return (
       <div>
         <Title text = {display_title}/>
