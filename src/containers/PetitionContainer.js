@@ -35,6 +35,8 @@ class PetitionContainer extends Component {
 	if (str.charAt(--strLen)=='"') str =str.substring(0,strLen);
 	return str;
   }
+
+
   render() {
     const { display_title, description } = this.state.petition;
     // let domparser = new DOMParser();
@@ -43,10 +45,14 @@ class PetitionContainer extends Component {
     // NOTE: Attempting to remove boundary quotes around description string
     //        In order to read html tags and properly render description.
     // NOTE 2: This Component view file will handle description in next iteration
+
+    const setDescription = {__html: description};
+
+
     return (
       <div>
         <Title text = {display_title}/>
-        <h3>Description: {description}</h3>
+        <div dangerouslySetInnerHTML={setDescription} />;
       </div>
     )
   }

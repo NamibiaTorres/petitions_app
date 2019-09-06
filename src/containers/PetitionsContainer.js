@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Title from '../components/Title';
+import Button from '../components/Button';
 
 class PetitionsContainer extends Component {
   constructor(props) {
@@ -69,14 +70,15 @@ class PetitionsContainer extends Component {
     )
 
     // Component View file will handle buttons and other html tags
+              // <button onClick={() => this.sortBy('displayed_signature_count')}> Signature count</button>
     return (
       <div>
         <Title text= "These are trending petitions"/>
         <h2>
           Sort petitions by:
 
-          <button onClick={() => this.sortBy('displayed_signature_count')}> Signature count</button>
-          <button onClick={() => this.sortBy('created_at')}> When created</button>
+          <Button onClick={() => this.sortBy('displayed_signature_count')}> Signature count</Button>
+          <Button onClick={() => this.sortBy('created_at')}> When created </Button>
         </h2>
         {petitions.length > 0 ? petitionsList : "loading"}
         <a href="#" onClick={this.onLoadPetitions}>Load more petitions...</a>
